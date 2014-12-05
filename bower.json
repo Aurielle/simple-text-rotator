@@ -4,6 +4,6 @@
 	"main": "jquery.simple-text-rotator.js",
 	"ignore": ["demo.html"],
 	"dependencies": {
-		"jQuery": ">=1.9.0"
+		"jquery": ">=1.9.0"
 	}
 }
