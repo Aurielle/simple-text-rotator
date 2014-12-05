@@ -1,0 +1,67 @@
+@import 'mixins.less';
+
+.rotating {
+	.transform-style(preserve-3d);
+	.transform(rotateX(0) rotateY(0) rotateZ(0));
+	.transition(0.5s);
+
+	display: inline-block;
+	-webkit-transform-origin-x: 50%;
+	white-space: nowrap;
+
+	&.flip {
+		position: relative;
+
+		.front {
+			z-index: 1;
+		}
+
+		.back {
+			z-index: 2;
+			display: block;
+			opacity: 1;
+
+			.transform(rotateY(180deg) translate3d(0, 0, 0));
+		}
+
+		&.up .back {
+			.transform(rotateX(180deg) translate3d(0, 0, 0));
+		}
+
+		&.cube {
+			.front {
+				.transform(translate3d(0, 0, 100px) scale(0.85, 0.85));
+			}
+
+			.back {
+				.transform(rotateY(180deg) translate3d(0, 0, 100px) scale(0.85, 0.85));
+			}
+
+			&.up .back {
+				.transform(rotateX(180deg) translate3d(0, 0, 100px) scale(0.85, 0.85));
+			}
+		}
+
+	}
+
+	.front, .back {
+		left: 0;
+		top: 0;
+		.backface-visibility(hidden);
+	}
+
+	.front {
+		position: absolute;
+		display: inline-block;
+		.transform(translate3d(0, 0, 1px));
+	}
+
+	.back {
+		display: block;
+		opacity: 0;
+	}
+
+	&.spin {
+		.transform(rotate(360deg) scale(0));
+	}
+}
